@@ -39,9 +39,9 @@ int main()
     scanf("%d", &quantidadePontosTuristicos);
 
     printf("\nPopulação: %d", populacao);
-    printf("\nÁrea: %f km²", area);
-    printf("PIB: %.2f bilhões de reais\n", PIB);
-    printf("\nNúmero de Pontos Turísticos");
+    printf("\nÁrea: %.2f km²", area);
+    printf("\nPIB: %.2f bilhões de reais", PIB);
+    printf("\nNúmero de Pontos Turísticos: %d\n", quantidadePontosTuristicos);
 
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
