@@ -43,7 +43,7 @@ int main()
     printf("Digite a quantidade de pontos turísticos da cidade: \n");
     scanf("%d", &quantidadePontosTuristicos);
 
-    int perCapita = PIB / populacao;
+    float perCapita = PIB / populacao;
     float densidadePopulacional = (float) populacao / area;
 
     printf("\nEstado: %c", estado);
@@ -53,7 +53,7 @@ int main()
     printf("\nÁrea: %.2f km²", area);
     printf("\nDensidade Populacional: %.2f pessoas/km²", densidadePopulacional);
     printf("\nPIB: %.2f bilhões de reais", PIB / 1000000000);
-    printf("\nPIB per Capita: %d reais", perCapita);
+    printf("\nPIB per Capita: %d reais", (int)perCapita);
     printf("\nNúmero de Pontos Turísticos: %d\n", quantidadePontosTuristicos);
 
     // Exibição dos Dados das Cartas:
