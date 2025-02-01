@@ -20,11 +20,15 @@ int main()
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
     // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    // printf("Digite o seu Estado: \n");
-    // scanf(" %c", &estado);
+    
+    printf("Digite o seu Estado: \n");
+    scanf(" %c", &estado);
 
-    // printf("Digite a o código da sua cidade: \n");
-    // scanf("%s", codigoDaCidade);
+    printf("Digite a o código da sua cidade: \n");
+    scanf("%s", codigoDaCidade);
+
+    printf("Digite o nome da Cidade: \n");
+    scanf(" %[^\n]", nomeDaCidade);
 
     printf("Digite a população da cidade: \n");
     scanf("%d", &populacao);
@@ -39,14 +43,17 @@ int main()
     printf("Digite a quantidade de pontos turísticos da cidade: \n");
     scanf("%d", &quantidadePontosTuristicos);
 
-    float perCapita = PIB / populacao;
+    int perCapita = PIB / populacao;
     float densidadePopulacional = (float) populacao / area;
 
+    printf("\nEstado: %c", estado);
+    printf("\nCódigo da Carta: %c%s", estado, codigoDaCidade);
+    printf("\nNome da Cidade: %s", nomeDaCidade);
     printf("\nPopulação: %d", populacao);
     printf("\nÁrea: %.2f km²", area);
     printf("\nDensidade Populacional: %.2f pessoas/km²", densidadePopulacional);
     printf("\nPIB: %.2f bilhões de reais", PIB / 1000000000);
-    printf("\nPIB per Capita: %2f reais", perCapita);
+    printf("\nPIB per Capita: %d reais", perCapita);
     printf("\nNúmero de Pontos Turísticos: %d\n", quantidadePontosTuristicos);
 
     // Exibição dos Dados das Cartas:
