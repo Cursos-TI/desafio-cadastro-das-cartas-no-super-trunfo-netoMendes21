@@ -34,19 +34,20 @@ int main()
 
     printf("Digite o PIB da cidade: \n");
     scanf("%f", &PIB);
+    PIB *= 1000000000;
 
     printf("Digite a quantidade de pontos turísticos da cidade: \n");
     scanf("%d", &quantidadePontosTuristicos);
 
     float perCapita = PIB / populacao;
-    float densidadePopulacional = populacao / area;
+    float densidadePopulacional = (float) populacao / area;
 
     printf("\nPopulação: %d", populacao);
     printf("\nÁrea: %.2f km²", area);
-    printf("\nPIB: %.2f bilhões de reais", PIB);
-    printf("\nNúmero de Pontos Turísticos: %d", quantidadePontosTuristicos);
-    printf("\nPIB per capita: %d reais\n", perCapita);
-    printf("Densidade Populacional: %.2f pessoas/km²\n", densidadePopulacional);
+    printf("\nDensidade Populacional: %.2f pessoas/km²", densidadePopulacional);
+    printf("\nPIB: %.2f bilhões de reais", PIB / 1000000000);
+    printf("\nPIB per Capita: %2f reais", perCapita);
+    printf("\nNúmero de Pontos Turísticos: %d\n", quantidadePontosTuristicos);
 
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
