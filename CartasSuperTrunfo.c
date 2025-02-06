@@ -20,6 +20,12 @@ float densidadePopulacional(int populacao, float area)
     return (float)populacao / area;
 }
 
+long long int superPoder(int populacao, float area, float pib, int pontosTuristicos)
+{
+    long double resuldado = populacao + area + pib + perCapita(pib, populacao) + densidadePopulacional(populacao, area) + pontosTuristicos;
+    return resuldado;
+}
+
 int carta(char *estado, char *codigo, char *nome, int *populacao, float *area, float *pib, int *pontosTuristicos)
 {
     printf("Digite o Estado: ");
@@ -58,6 +64,7 @@ int cartaPronta(char estado, char *codigo, char *nome, int populacao, float area
     printf("\nPIB: %.2f bilhões de reais", pib / 1000000000);
     printf("\nPIB per Capita: %lu reais", perCapita(pib, populacao));
     printf("\nNúmero de Pontos Turísticos: %d\n", pontosTuristicos);
+    printf("\nSeu SuperPoder é de: %lld\n", superPoder(populacao, area, pib, pontosTuristicos));
 
     return 0;
 }
@@ -97,6 +104,89 @@ int main()
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+
+    int pontuacao1, pontuacao2;
+    if (populacao > populacao2)
+    {
+        printf("\nCarta 1 ganhou na proprieda: população\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou na propriedade: população\n");
+        pontuacao2 += 1;
+    }
+    if (area > area2)
+    {
+        printf("\nCarta 1 ganhou na propriedade: área\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou na propriedade: área\n");
+        pontuacao2 += 1;
+    }
+    if (densidadePopulacional(populacao, area) < densidadePopulacional(populacao2, area2))
+    {
+        printf("\nCarta 1 ganhou na propriedade: densidade populacional\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou na propriedade: densidade populacional\n");
+        pontuacao2 += 1;
+    }
+    if (PIB > PIB2)
+    {
+        printf("\nCarta 1 ganhou na propriedade: PIB\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou na propriedade: PIB\n");
+        pontuacao2 += 1;
+    }
+    if (perCapita(PIB, populacao) > perCapita(PIB2, pontuacao2))
+    {
+        printf("\nCarta 1 ganhou na propriedade: renda per capita\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou na propriedade: renda per capita\n");
+        pontuacao2 += 1;
+    }
+    if (quantidadePontosTuristicos > quantidadePontosTuristicos2)
+    {
+        printf("\nCarta 1 ganhou na propriedade: números de pontos turísticos\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou na propriedade: números de pontos turísticos\n");
+        pontuacao2 += 1;
+    }
+    if (superPoder(populacao, area, PIB, quantidadePontosTuristicos) > superPoder(populacao2, area2, PIB2, quantidadePontosTuristicos2))
+    {
+        printf("\nCarta 1 ganhou com o seu superPoder maior\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou com o seu superPoder maior\n");
+        pontuacao2 += 1;
+    }
+    if (pontuacao1 > pontuacao2)
+    {
+        printf("Carta1 venceu!\n");
+    }
+    else
+    {
+        printf("\nCarta2 venceu!\n");
+    }
+
+    printf("\nPontuação da Carta1 é: %d", pontuacao1);
+    printf("\nPontuação da Carta2 é: %d\n", pontuacao2);
 
     return 0;
 }
