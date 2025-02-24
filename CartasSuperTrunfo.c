@@ -6,6 +6,8 @@
 // Siga os comentários para implementar cada parte do desafio.
 // Teste larissa
 
+
+// função para calcular o Pib per Capita
 unsigned long int perCapita(float pib, int populacao)
 {
     if (populacao == 0)
@@ -13,6 +15,7 @@ unsigned long int perCapita(float pib, int populacao)
     return (unsigned long int)pib / populacao;
 }
 
+//função para calcular a densidade populacional
 float densidadePopulacional(int populacao, float area)
 {
     if (area == 0)
@@ -20,12 +23,14 @@ float densidadePopulacional(int populacao, float area)
     return (float)populacao / area;
 }
 
+// função para calcular o superPoder
 long long int superPoder(int populacao, float area, float pib, int pontosTuristicos)
 {
     long double resuldado = populacao + area + pib + perCapita(pib, populacao) + densidadePopulacional(populacao, area) + pontosTuristicos;
     return resuldado;
 }
 
+// função para criar a carta com todos os atributos//
 int carta(char *estado, char *codigo, char *nome, int *populacao, float *area, float *pib, int *pontosTuristicos)
 {
     printf("Digite o Estado: ");
@@ -53,6 +58,7 @@ int carta(char *estado, char *codigo, char *nome, int *populacao, float *area, f
     return 0;
 }
 
+//Função para retornar a carta com todas informações necessárias com o formato pedido do desafio //
 int cartaPronta(char estado, char *codigo, char *nome, int populacao, float area, float pib, int pontosTuristicos)
 {
     printf("\nEstado: %c",toupper(estado));
@@ -77,29 +83,58 @@ int main()
     char nomeDaCidade[50], nomeDaCidade2[50];
     int populacao, quantidadePontosTuristicos, populacao2, quantidadePontosTuristicos2;
     float area, PIB, area2, PIB2;
+    int opcao;
 
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
 
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
     // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    printf("Digite os dados da primera carta \n\n");
 
+    printf("Bem-Vindo ao Jogo Super-Trunfo!\n\n");
+    printf("Crie a carta do primeiro jogador:\n");
+     
+    // CRIAÇÃO DA CARTA DO PRIMEIRO JOGADOR//
+    printf("Digite os dados da primera carta: \n\n");
     carta(&estado, codigoDaCidade, nomeDaCidade, &populacao, &area, &PIB, &quantidadePontosTuristicos);
+    
+    //RETORNO DA PRMEIRA CARTA//
+    printf("\nEssa é a carta do primeiro jogador:\n");
+    cartaPronta(estado, codigoDaCidade, nomeDaCidade, populacao, area, PIB, quantidadePontosTuristicos);
+    
+    printf("\nAgora crie a carta do segundo jogador\n");
 
-    printf("\nDigite as propriedades da segunda carta: \n\n");
-
+    //CRIAÇÃO DA CARTA DO SEGUNDO JOGADOR//
+    printf("Digite os dados da segunda carta: \n\n");
     carta(&estado2, codigoDaCidade2, nomeDaCidade2, &populacao2, &area2, &PIB2, &quantidadePontosTuristicos2);
 
-    // primeiro jogador//
-    printf("\nCarta 1\n");
-
-    cartaPronta(estado, codigoDaCidade, nomeDaCidade, populacao, area, PIB, quantidadePontosTuristicos);
-
-    // segundo jogador//
-    printf("\nCarta 2\n");
-
+    // RETORNO DA CARTA DO SEGUNDO JOGADOR //
+    printf("\nEssa é a carta do segundo jogador:\n");
     cartaPronta(estado2, codigoDaCidade2, nomeDaCidade2, populacao2, area2, PIB2, quantidadePontosTuristicos2);
+
+    printf("Que comece a batalha!\n");
+
+    // Escolha de
+    printf("Escolha com qual dos atributos você quer competir:\n");
+    printf("1.");
+    
+    scanf("%d", opcao);
+
+    switch (opcao)
+    {
+    case 1 :
+        printf("Começar o jogo:");
+
+        break;
+    
+    default:
+        break;
+    }
+    
+
+
+    
+   
 
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
