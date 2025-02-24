@@ -55,8 +55,8 @@ int carta(char *estado, char *codigo, char *nome, int *populacao, float *area, f
 
 int cartaPronta(char estado, char *codigo, char *nome, int populacao, float area, float pib, int pontosTuristicos)
 {
-    printf("\nEstado: %c", estado);
-    printf("\nCódigo da Carta: %c%s", estado, codigo);
+    printf("\nEstado: %c",toupper(estado));
+    printf("\nCódigo da Carta: %c%02d", toupper(estado), atoi(codigo));
     printf("\nNome da Cidade: %s", nome);
     printf("\nPopulação: %d", populacao);
     printf("\nÁrea: %.2f km²", area);
@@ -146,7 +146,7 @@ int main()
         printf("\nCarta 2 ganhou na propriedade: PIB\n");
         pontuacao2 += 1;
     }
-    if (perCapita(PIB, populacao) > perCapita(PIB2, pontuacao2))
+    if (perCapita(PIB, populacao) > perCapita(PIB2, populacao2))
     {
         printf("\nCarta 1 ganhou na propriedade: renda per capita\n");
         pontuacao1 += 1;
