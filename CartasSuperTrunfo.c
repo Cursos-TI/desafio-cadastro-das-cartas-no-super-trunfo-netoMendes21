@@ -116,61 +116,46 @@ int main()
 
     // Escolha de
     printf("Escolha com qual dos atributos você quer competir:\n");
-    printf("1.");
-    
-    scanf("%d", opcao);
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Per Capita\n");
+    printf("5. Densidade Populacional");
+    printf("6. Pontos Turísticos\n");
+    printf("7. Super Poder\n");
+    printf("8. Total (só pode ser escolhida se já tiver escolhido algum atrbuto antes...)\n");
+    scanf("%d", &opcao);
 
+    int pontuacao1, pontuacao2;
     switch (opcao)
     {
     case 1 :
-        printf("Começar o jogo:");
-
-        break;
-    
-    default:
-        break;
-    }
-    
-
-
-    
-   
-
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
-
-    int pontuacao1, pontuacao2;
     if (populacao > populacao2)
     {
-        printf("\nCarta 1 ganhou na proprieda: população\n");
+        printf("\nPrimeiro jogardor ganhou na propriedade: população\n");
         pontuacao1 += 1;
     }
     else
     {
-        printf("\nCarta 2 ganhou na propriedade: população\n");
+        printf("\nSegundo Jogador ganhou na propriedade: população\n");
         pontuacao2 += 1;
     }
+    break;
+    
+    case 2 :
     if (area > area2)
     {
-        printf("\nCarta 1 ganhou na propriedade: área\n");
+        printf("\nPrimeiro jogardor ganhou na propriedade: área\n");
         pontuacao1 += 1;
     }
     else
     {
-        printf("\nCarta 2 ganhou na propriedade: área\n");
+        printf("\nSegundo Jogador na propriedade: área\n");
         pontuacao2 += 1;
     }
-    if (densidadePopulacional(populacao, area) < densidadePopulacional(populacao2, area2))
-    {
-        printf("\nCarta 1 ganhou na propriedade: densidade populacional\n");
-        pontuacao1 += 1;
-    }
-    else
-    {
-        printf("\nCarta 2 ganhou na propriedade: densidade populacional\n");
-        pontuacao2 += 1;
-    }
+        break;
+
+    case 3 :
     if (PIB > PIB2)
     {
         printf("\nCarta 1 ganhou na propriedade: PIB\n");
@@ -181,6 +166,9 @@ int main()
         printf("\nCarta 2 ganhou na propriedade: PIB\n");
         pontuacao2 += 1;
     }
+    break;
+
+    case 4 :
     if (perCapita(PIB, populacao) > perCapita(PIB2, populacao2))
     {
         printf("\nCarta 1 ganhou na propriedade: renda per capita\n");
@@ -191,6 +179,22 @@ int main()
         printf("\nCarta 2 ganhou na propriedade: renda per capita\n");
         pontuacao2 += 1;
     }
+    break;
+
+    case 5 :
+    if (densidadePopulacional(populacao, area) < densidadePopulacional(populacao2, area2))
+    {
+        printf("\nCarta 1 ganhou na propriedade: densidade populacional\n");
+        pontuacao1 += 1;
+    }
+    else
+    {
+        printf("\nCarta 2 ganhou na propriedade: densidade populacional\n");
+        pontuacao2 += 1;
+    }
+    break;
+
+    case 6:
     if (quantidadePontosTuristicos > quantidadePontosTuristicos2)
     {
         printf("\nCarta 1 ganhou na propriedade: números de pontos turísticos\n");
@@ -200,7 +204,11 @@ int main()
     {
         printf("\nCarta 2 ganhou na propriedade: números de pontos turísticos\n");
         pontuacao2 += 1;
+    
     }
+    break;
+
+    case 7 :
     if (superPoder(populacao, area, PIB, quantidadePontosTuristicos) > superPoder(populacao2, area2, PIB2, quantidadePontosTuristicos2))
     {
         printf("\nCarta 1 ganhou com o seu superPoder maior\n");
@@ -211,17 +219,27 @@ int main()
         printf("\nCarta 2 ganhou com o seu superPoder maior\n");
         pontuacao2 += 1;
     }
+    break;
+
+    case 8 :
     if (pontuacao1 > pontuacao2)
     {
-        printf("Carta1 venceu!\n");
+        printf("Primeiro jogador venceu!\n");
     }
     else
     {
-        printf("\nCarta2 venceu!\n");
+        printf("\nSegundo Jogador venceu!\n");
     }
 
     printf("\nPontuação da Carta1 é: %d", pontuacao1);
     printf("\nPontuação da Carta2 é: %d\n", pontuacao2);
-
+    break;
+    default: printf("Escolha uma opção válida!");
+        break;
+    }
+    
+    // Exibição dos Dados das Cartas:
+    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
+    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
     return 0;
 }
