@@ -9,6 +9,7 @@
 // Teste larissa
 // Desafio feito José Luiz Medeiros Mendes Neto
 
+// função que calcula o PIB Per Capita
 unsigned long int perCapita(float pib, int populacao)
 {
     if (populacao <= 0)
@@ -20,6 +21,7 @@ unsigned long int perCapita(float pib, int populacao)
     return (unsigned long int)(pib / populacao);
 }
 
+// Função que calcula a densidade populacional
 float densidadePopulacional(int populacao, float area)
 {
     if (area <= 0)
@@ -30,21 +32,23 @@ float densidadePopulacional(int populacao, float area)
     return (float)populacao / area;
 }
 
+// Função que calcula o super poder da cada carta
 float superPoder(int populacao, float area, float pib, int pontosTuristicos)
 {
     float perCapitaValue = (float)perCapita(pib, populacao); // Converte explicitamente para evitar problemas no resultado
-    float resultado = populacao + area + pib + perCapitaValue + densidadePopulacional(populacao, area) + pontosTuristicos;
+    float resultado = populacao + area + pib + perCapitaValue + (1 / densidadePopulacional(populacao, area)) + pontosTuristicos;
     return resultado;
 }
 
+// Função para requisição de dados para as cartas
 int carta(char *estado, char *codigo, char *nome, int *populacao, float *area, float *pib, int *pontosTuristicos)
 {
 
-    printf("Digite o Estado: ");
+    printf("Digite o Estado entre A e H: ");
     scanf(" %c", estado);
     *estado = toupper(*estado);
 
-    printf("Digite o código da cidade: ");
+    printf("Digite o código da cidade entre 1 e 4: ");
     scanf("%s", codigo);
 
     printf("Digite o nome da Cidade: ");
@@ -66,6 +70,7 @@ int carta(char *estado, char *codigo, char *nome, int *populacao, float *area, f
     return 0;
 }
 
+// Função que retorna a carta com todos os valores que foram requeridos formatada como pedido
 int cartaPronta(char estado, char *codigo, char *nome, int populacao, float area, float pib, int pontosTuristicos)
 {
     printf("\nEstado: %c", estado);
@@ -96,22 +101,27 @@ int main()
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
     // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
+
     printf("***Digite os dados da primera carta***\n\n");
 
+    // chamada da função para inserção de dados para criar a Carta 1
     carta(&estado, codigoDaCidade, nomeDaCidade, &populacao, &area, &PIB, &quantidadePontosTuristicos);
 
     printf("\n***Digite as propriedades da segunda carta***\n\n");
 
+    // chamada da função para inserção de dados para criar a Carta 2
     carta(&estado2, codigoDaCidade2, nomeDaCidade2, &populacao2, &area2, &PIB2, &quantidadePontosTuristicos2);
 
     // primeiro jogador//
     printf("\n----------------------Carta 1----------------------");
 
+    // função que retorna a Carta 1 com todos seus atributos
     cartaPronta(estado, codigoDaCidade, nomeDaCidade, populacao, area, PIB, quantidadePontosTuristicos);
 
     // segundo jogador //
     printf("\n----------------------Carta 2----------------------");
 
+    // função que retorna a Carta 2 com todos seus atributos
     cartaPronta(estado2, codigoDaCidade2, nomeDaCidade2, populacao2, area2, PIB2, quantidadePontosTuristicos2);
 
     printf("\n---------------Comparação das Cartas----------------");
@@ -120,131 +130,28 @@ int main()
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
 
-    int pontuacao1 = 0, pontuacao2 = 0;
+    // variáveis para comparação entre atributos de cada carta
+    int compararPopulacao = populacao > populacao2;
+    int compararArea = area > area2;
+    int compararPIB = PIB > PIB2;
+    int compararQuantidadePontosTuristicos = quantidadePontosTuristicos > quantidadePontosTuristicos2;
+    int compararDensidadePopulacional = densidadePopulacional(populacao, area) < densidadePopulacional(populacao2, area2);
+    int compararPerCapita = perCapita(PIB, populacao) > perCapita(PIB2, populacao2);
+    int compararSuperPoder = superPoder(populacao, area, PIB, quantidadePontosTuristicos) > superPoder(populacao2, area2, PIB2, quantidadePontosTuristicos2);
 
-    if (populacao > populacao2)
-    {
-        printf("\nPopulação: Carta 1 venceu (1)\n");
-        pontuacao1 += 1;
-    }
-    else if (populacao < populacao2)
-    {
-        printf("\nPopulação: Carta 2 venceu (0)\n");
-        pontuacao2 += 1;
-    }
-    else
-    {
-        printf("\nEmpate na propriedade: População\n");
-    }
+    printf("\nPopulação: Carta %d venceu!\n", compararPopulacao);
 
-    if (area > area2)
-    {
-        printf("\nÁrea: Carta 1 venceu (1)\n");
-        pontuacao1 += 1;
-    }
-    else if (area < area2)
-    {
-        printf("\nÁrea: Carta 2 venceu (0)\n");
-        pontuacao2 += 1;
-    }
-    else
-    {
-        printf("\nEmpate na propriedade: área\n");
-    }
+    printf("\nÁrea: Carta %d venceu!\n", compararArea);
 
-    if (PIB > PIB2)
-    {
-        printf("\nPIB: Carta 1 venceu (1)\n");
-        pontuacao1 += 1;
-    }
-    else if (PIB < PIB2)
-    {
-        printf("\nPIB: Carta 2 venceu (0)\n");
-        pontuacao2 += 1;
-    }
-    else
-    {
-        printf("\nEmpate na propriedade: PIB\n");
-    }
+    printf("\nPIB: Carta %d venceu!\n", compararPIB);
 
-    if (quantidadePontosTuristicos > quantidadePontosTuristicos2)
-    {
-        printf("\nPontos Turísticos: Carta 1 venceu (1)\n");
-        pontuacao1 += 1;
-    }
-    else if (quantidadePontosTuristicos < quantidadePontosTuristicos2)
-    {
-        printf("\nPontos Turísticos: Carta 2 venceu (0)\n");
-        pontuacao2 += 1;
-    }
-    else
-    {
-        printf("\nEmpate na propriedade: número de pontos turísticos\n");
-    }
+    printf("\nPontos Turísticos: Carta %d venceu!\n", compararQuantidadePontosTuristicos);
 
-    if (densidadePopulacional(populacao, area) < densidadePopulacional(populacao2, area2))
-    {
-        printf("\nDensidade Populacional: Carta 1 venceu (1)\n");
-        pontuacao1 += 1;
-    }
-    else if (densidadePopulacional(populacao, area) > densidadePopulacional(populacao2, area2))
-    {
-        printf("\nDensidade Populacional: Carta 2 venceu (0)\n");
-        pontuacao2 += 1;
-    }
-    else
-    {
-        printf("\nEmpate na propriedade: densidade populacional\n");
-    }
+    printf("\nDensidade Populacional: Carta %d venceu!\n", compararDensidadePopulacional);
 
-    if (perCapita(PIB, populacao) > perCapita(PIB2, populacao2))
-    {
-        printf("\nPIB per Capita: Carta 1 venceu (1)\n");
-        pontuacao1 += 1;
-    }
-    else if (perCapita(PIB, populacao) < perCapita(PIB2, populacao2))
-    {
-        printf("\nPIB per Capita: Carta 1 venceu (0)\n");
-        pontuacao2 += 1;
-    }
-    else
-    {
-        printf("\nEmpate na propriedade: renda per capita\n");
-    }
+    printf("\nPIB per Capita: Carta %d venceu!\n", compararPerCapita);
 
-    if (superPoder(populacao, area, PIB, quantidadePontosTuristicos) > superPoder(populacao2, area2, PIB2, quantidadePontosTuristicos2))
-    {
-        printf("\nSuper Poder: Carta 1 venceu (1)\n");
-        pontuacao1 += 1;
-    }
-    else if (superPoder(populacao, area, PIB, quantidadePontosTuristicos) < superPoder(populacao2, area2, PIB2, quantidadePontosTuristicos2))
-    {
-        printf("\nSuper Poder: Carta 2 venceu (0)\n");
-        pontuacao2 += 1;
-    }
-    else
-    {
-        printf("\nEmpate no superPoder\n");
-    }
-
-    printf("\n--------------Pontuação Final---------------\n");
-    printf("Carta 1: %d pontos\n", pontuacao1);
-    printf("Carta 2: %d pontos\n", pontuacao2);
-
-    printf("----------------------Resultado----------------------\n");
-    if (pontuacao1 > pontuacao2)
-    {
-        printf("Carta 1 venceu!\n");
-    }
-    else if (pontuacao1 < pontuacao2)
-    {
-        printf("Carta 2 venceu!\n");
-    }
-    else
-    {
-        printf("Empate geral!\n");
-    }
-    printf("----------------------Resultado----------------------\n\n");
+    printf("\nSuper Poder: Carta %d venceu!\n", compararSuperPoder);
 
     return 0;
 }
